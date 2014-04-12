@@ -27,7 +27,7 @@
     iptables -A logdrop -j LOG --log-prefix "IPTables-Dropped: " --log-level 4
     iptables -A logdrop -j DROP    
 
-####Instead of DROP, user this chain instead
+####Instead of DROP, use logdrop chain instead
   
     iptables -A INPUT -s 192.168.100.51 -p tcp --tcp-flags SYN SYN -j logdrop
 
