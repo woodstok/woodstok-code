@@ -77,6 +77,7 @@ int main(int argc, char**argv)
    printf( "\nAccepted connection from %s:%d",inet_ntoa(cli_addr.sin_addr.s_addr),ntohs(cli_addr.sin_port));
    printf ( "\n************ Press any key to exit  \n ");
    getchar();
+   close(conn_fd);
    close(listen_fd);
 
 }
