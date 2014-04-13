@@ -15,9 +15,18 @@
 
 ###Blocking packets with specific tcp flags
 
+*Note: in the --tcp-flags switch, we supply two parameters.
+1.mask - these are the flags that we examine.
+2.comp - these are the flags that have to be set.  Flags are: SYN ACK FIN RST URG PSH ALL NONE.  
+Hence the command `iptables -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST SYN` will only match packets with the SYN flag set, and the ACK, FIN and RST flags unset.  *
+
 1.Blocking syn from client
 
     iptables -A INPUT -s 192.168.100.51 -p tcp --tcp-flags SYN SYN -j DROP
+
+2.Blocking syn+ack from server
+   
+    iptables -A INPUT -s 192.168.100.100  -p tcp --tcp-flags SYN,ACK SYN,ACK -j DROP
 
 ###Blocking and logging the packets
 
